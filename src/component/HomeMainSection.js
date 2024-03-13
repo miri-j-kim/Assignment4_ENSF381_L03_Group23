@@ -20,9 +20,15 @@ function HomeMainSection(){
     const [review2, setReview2] = useState(0);
 
     useEffect(()=> {
-        setReview1(reviews[Math.floor(Math.random() * reviews.length)]);
-        setReview2(reviews[Math.floor(Math.random() * reviews.length)]);
-    }, [review1,review2]);
+        let index1 = Math.floor(Math.random() * reviews.length)
+        let index2 = Math.floor(Math.random() * reviews.length)
+        while (index1 === index2){
+            index2 = Math.floor(Math.random() * reviews.length)
+        };
+
+        setReview1(reviews[index1]);
+        setReview2(reviews[index2]);
+    },[]);
 
     function rating (numStars) {
         const stars = Array.from({length: numStars}, ()=> <span className="star">&#9733;</span>);
@@ -34,7 +40,7 @@ function HomeMainSection(){
       };
 
     return(
-        <div onLoad={useEffect}>
+        <div>
             <div style={mainStyle} className='about'>
                 <h1>About Us</h1>
                 <p>Welcome! We offer a variety of products from phonecases to lip tints. We strive to provide the best product quality and customer service.</p>
