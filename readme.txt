@@ -1,4 +1,6 @@
 Libraries to install:
-1. react-router-rom
+1. react-router-dom
 
-npm install react-router-dom (w8_3 s19)
+To install all needed libraries;
+1. cd {path to get inside project}
+2. npm install react-router-dom
