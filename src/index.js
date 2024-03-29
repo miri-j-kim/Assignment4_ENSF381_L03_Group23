@@ -1,3 +1,6 @@
+/*  Partner: Suyoung Jang
+    UCID: 30179959
+*/
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
