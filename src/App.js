@@ -18,11 +18,3 @@ function App() {
 }
 
 export default App;
-
-/*     <BrowserRouter>
-    <Routes>
-        <Route path="/Products" element={<Products />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-    </Routes>
-    </BrowserRouter> */
