@@ -39,7 +39,7 @@ function SignupForm(){
                     }
                 })
                 .then(data => setAuthMessage(data.registrationMessage))
-                .catch(error => setAuthMessage('Username is already taken!'));
+                .catch(error => setAuthMessage(error));
             }
         }
     };
