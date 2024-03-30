@@ -11,10 +11,18 @@ function SignupForm(){
 
     function handleAuthenication() {
         if (!username || !password || !confirmPassword) {
-            setAuthMessage("All fields required");
+            if (password != confirmPassword){
+                setAuthMessage("All fields required. \n Password and confirmPassword have to match");
+            }
+            else{
+                setAuthMessage("All fields required");
+            }
+
         }
-        if (password != confirmPassword){
+        else{
+            if (password != confirmPassword){
             setAuthMessage("Password and confirmPassword have to match");
+            }
         }
         fetch('http://localhost:5000/Login',{
             method: 'POST',
@@ -53,7 +61,7 @@ function SignupForm(){
             <input type="password" onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Comfirm your password'/> <br/>
             <label>Email: </label>
             <input type="text" onChange={(e)=> setEmail(e.target.value)} placeholder='Enter your email'/> <br/>
-            <button onClick={handleAuthenication}>Login</button> <br/>
+            <button onClick={handleAuthenication}>Sign Up</button> <br/>
             <button onClick={gotoLoginForm}>Switch to Login</button>
         </div>
     );
