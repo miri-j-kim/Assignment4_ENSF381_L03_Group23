@@ -12,6 +12,7 @@ function Loginpage(){
             <Footer />
         </div>
     );
+
 };
 
 export default Loginpage;
