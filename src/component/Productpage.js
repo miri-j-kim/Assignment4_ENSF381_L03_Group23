@@ -1,14 +1,17 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ProductList from './ProductList';
 import Cart from './Cart';
-
-export const CartItemsContext = createContext(null);
+import {useNavigate} from 'react-router-dom';
+import {useAuthContext} from '../App.js';
 
 function Productpage(){
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const {authenticated} = useAuthContext(false);
+
+    const navigate = useNavigate();
 
     useEffect(()=> {
         const itemsInLocal = JSON.parse(localStorage.getItem('cartItems') || "[]");
@@ -59,6 +62,12 @@ function Productpage(){
         setCartItems(cartItems);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
+
+    useEffect(() => {
+        if (!authenticated){
+            navigate(`/Login`)
+        }
+    }, [authenticated]);
 
     return(
         <div className="product-page">

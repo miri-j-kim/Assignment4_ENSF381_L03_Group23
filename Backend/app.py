@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import json
 
 app = Flask(__name__)
 CORS(app)
 
 
-users = [{"username": "123", "password": "123"}]
+users = []
 
 products = [
  {
@@ -88,9 +87,9 @@ def registerUser():
         new_username = new_user.get('username')
         for user in users:
             if user['username'] == new_username:
-                return jsonify({"registered": False, "registrationMessage": "Username already taken!"})
+                return jsonify({"registrationMessage": "Username already taken!"})
         users.append(new_user)
-        return jsonify({"registered": True, "registrationMessage": "Signup successful"})
+        return jsonify({"registrationMessage": "Signup successful"})
     else:
         test_username = new_user.get('username')
         test_password = new_user.get('password')
@@ -99,20 +98,10 @@ def registerUser():
             if user['username'] == test_username and user['password'] == test_password:
                 return(jsonify({"authenticated": True, "authMessage": "Authenication successful"}))
         return jsonify({"authenticated": False, "authMessage": "Incorrect username or password"})
-''' 
-@app.route('/Login', methods=['POST'])
-def authenicateUser():
-    test_user = request.get_json()
-    test_username = test_user.get('username')
-    test_password = test_user.get('password')
-    for user in users:
-        if user['username'] == test_username and user['password'] == test_password:
-            return(jsonify({"authenticated": True, "authMessage": "Authenication successful"}))
-    return jsonify({"authenticated": False, "authMessage": "Incorrect username or password"})
-'''
+
 @app.route('/Products', methods=['GET'])
 def getProducts():  
-    return jsonify(products)
+    return products
 
 if __name__ == '__main__':
     app.run()

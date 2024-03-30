@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import SignupForm from './SignupForm.js';
+import {useNavigate} from 'react-router-dom';
+import { useAuthContext } from '../App.js';
 
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [authMessage, setAuthMessage] = useState("");
     const [showSignup, setShowSignup] = useState(false);
+    const {authenticated, setAuthenticated} = useAuthContext();
+    const [isInitialRender, setIsInitialRender] = useState(true);
+
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        if (isInitialRender){
+            setIsInitialRender(false)
+        }
+        else if (authenticated){
+            navigate(`/Products`);
+        }
+    },[authenticated])
     
     function handleAuthenication() {
         if (!username || !password) {
@@ -26,8 +41,8 @@ function LoginForm() {
                     throw new Error('Authentication failed');
                 }
             })
-            .then(data => setAuthMessage(data.authMessage))
-            .catch(error => setAuthMessage('Authentication failed. Incorrect username or password.'));
+            .then(data => {setAuthMessage(data.authMessage); setAuthenticated(data.authenticated); sessionStorage.setItem('authenticated', data.authenticated)})
+            .catch(error => setAuthMessage(error));
     }console.log(authMessage)
     };
 

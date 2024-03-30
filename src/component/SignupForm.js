@@ -6,22 +6,22 @@ function SignupForm(){
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [authMessage, setAuthMessage] = useState("");
+    const [registrationMessage, setRegistrationMessage] = useState("");
     const [showLogin, setshowLogin] = useState(false);
 
     function handleAuthenication() {
         if (!username || !password || !confirmPassword) {
             if (password !== confirmPassword){
-                setAuthMessage("All fields required. \nPassword and confirmPassword have to match");
+                setRegistrationMessage("All fields required. \nPassword and confirmPassword have to match");
             }
             else{
-                setAuthMessage("All fields required");
+                setRegistrationMessage("All fields required");
             }
 
         }
         else{
             if (password !== confirmPassword){
-                setAuthMessage("Password and confirmPassword have to match");
+                setRegistrationMessage("Password and confirmPassword have to match");
             }
             else{
                 fetch('http://localhost:5000/Login',{
@@ -38,8 +38,8 @@ function SignupForm(){
                         throw new Error('Registration failed');
                     }
                 })
-                .then(data => setAuthMessage(data.registrationMessage))
-                .catch(error => setAuthMessage(error));
+                .then(data => setRegistrationMessage(data.registrationMessage))
+                .catch(error => setRegistrationMessage(error));
             }
         }
     };
@@ -55,7 +55,7 @@ function SignupForm(){
     return (
         <div>
             <h1>Signup</h1>
-            <p style={{ color: "red" }}>{authMessage}</p>
+            <p style={{ color: "red" }}>{registrationMessage}</p>
             <label>Username: </label>
             <input type="text" onChange={(e)=> setUsername(e.target.value)} placeholder='Enter your username'/> <br/>
             <label>Password: </label>
