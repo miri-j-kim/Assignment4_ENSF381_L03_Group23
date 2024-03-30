@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import SignupForm from './SignupForm.js';
 import {useNavigate} from 'react-router-dom';
 import { useAuthContext } from '../App.js';
