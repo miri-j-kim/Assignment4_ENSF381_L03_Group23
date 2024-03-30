@@ -24,26 +24,23 @@ function SignupForm(){
                 setAuthMessage("Password and confirmPassword have to match");
             }
             else{
-                setAuthMessage("")
+                fetch('http://localhost:5000/Login',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({'username':username, 'password':password, 'email':email}),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Registration failed');
+                    }
+                })
+                .then(data => setAuthMessage(data.registrationMessage))
+                .catch(error => setAuthMessage('Username is already taken!'));
             }
-        }
-        if (!authMessage){
-            fetch('http://localhost:5000/Login',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({'username':username, 'password':password, 'email':email}),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Registration failed');
-                }
-            })
-            .then(data => setAuthMessage(data.registrationMessage))
-            .catch(error => setAuthMessage('Username is already taken!'));
         }
     };
 

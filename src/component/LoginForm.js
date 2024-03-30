@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SignupForm from './SignupForm';
+import SignupForm from './SignupForm.js';
 
 function LoginForm() {
     const [username, setUsername] = useState("");
@@ -11,22 +11,25 @@ function LoginForm() {
         if (!username || !password) {
             setAuthMessage("All fields required");
         }
-        fetch('http://localhost:5000/Login',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({'username':username, 'password':password}),
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Authentication failed');
-            }
-        })
-        .then(data => setAuthMessage(data.message))
-        .catch(error => setAuthMessage('Authentication failed. Incorrect username or password.'));};
+        else{
+            fetch('http://localhost:5000/Login',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({'username':username, 'password':password}),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Authentication failed');
+                }
+            })
+            .then(data => setAuthMessage(data.authMessage))
+            .catch(error => setAuthMessage('Authentication failed. Incorrect username or password.'));
+    }console.log(authMessage)
+    };
 
     function gotoSignupForm() {
         setShowSignup(true); 
