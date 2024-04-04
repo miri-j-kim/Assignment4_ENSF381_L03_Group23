@@ -12,7 +12,7 @@ function SignupForm(){
     function handleAuthenication() {
         if (!username || !password || !confirmPassword) {
             if (password !== confirmPassword){
-                setRegistrationMessage("All fields required. \nPassword and confirmPassword have to match");
+                setRegistrationMessage("All fields required. Password and confirmPassword have to match");
             }
             else{
                 setRegistrationMessage("All fields required");
