@@ -1,7 +1,8 @@
 Libraries to install:
-1. react-router-dom
-2. flask
-3. flask-cors
+1. npm install
+2. npm install react-router-dom
+3. pip install flask
+4. pip install flask-cors
 
 To install all needed libraries;
 1. cd {path to get inside project}
