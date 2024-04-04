@@ -10,7 +10,7 @@ function SignupForm(){
     const [showLogin, setshowLogin] = useState(false);
 
     function handleAuthenication() {
-        if (!username || !password || !confirmPassword) {
+        if (!username || !password || !confirmPassword ||!email) {
             if (password !== confirmPassword){
                 setRegistrationMessage("All fields required. Password and confirmPassword have to match");
             }

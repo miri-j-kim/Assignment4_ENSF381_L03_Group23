@@ -96,7 +96,7 @@ def registerUser():
         for user in users:
             print(user)
             if user['username'] == test_username and user['password'] == test_password:
-                return(jsonify({"authenticated": True, "authMessage": "Authenication successful"}))
+                return(jsonify({"authenticated": True, "authMessage": "Authentication successful"}))
         return jsonify({"authenticated": False, "authMessage": "Incorrect username or password"})
 
 @app.route('/Products', methods=['GET'])
