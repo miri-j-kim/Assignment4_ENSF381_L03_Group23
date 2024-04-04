@@ -15,4 +15,6 @@ to run the code:
 4. pip install flask
 5. pip install flask-cors
 6. python app.py
-7. npm start
+7. open a new terminal
+8. cd {path to get inside project}
+9. npm start
