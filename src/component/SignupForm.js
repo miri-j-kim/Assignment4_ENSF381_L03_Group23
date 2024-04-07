@@ -9,7 +9,7 @@ function SignupForm(){
     const [registrationMessage, setRegistrationMessage] = useState("");
     const [showLogin, setshowLogin] = useState(false);
 
-    function handleAuthenication() {
+    function handleRegistration() {
         if (!username || !password || !confirmPassword ||!email) {
             if (password !== confirmPassword){
                 setRegistrationMessage("All fields required. Password and confirmPassword have to match");
@@ -64,7 +64,7 @@ function SignupForm(){
             <input type="password" onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Comfirm your password'/> <br/>
             <label>Email: </label>
             <input type="text" onChange={(e)=> setEmail(e.target.value)} placeholder='Enter your email'/> <br/>
-            <button onClick={handleAuthenication}>Sign Up</button> <br/>
+            <button onClick={handleRegistration}>Sign Up</button> <br/>
             <button onClick={gotoLoginForm}>Switch to Login</button>
         </div>
     );

@@ -6,7 +6,7 @@ import { useAuthContext } from '../App.js';
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [authMessage, setAuthMessage] = useState("");
+    const [authenticationMessage, setAuthenticationMessage] = useState("");
     const [showSignup, setShowSignup] = useState(false);
     const {authenticated, setAuthenticated} = useAuthContext();
     const [isInitialRender, setIsInitialRender] = useState(true);
@@ -24,7 +24,7 @@ function LoginForm() {
     
     function handleAuthenication() {
         if (!username || !password) {
-            setAuthMessage("All fields required");
+            setAuthenticationMessage("All fields required");
         }
         else{
             fetch('http://localhost:5000/Login',{
@@ -41,9 +41,9 @@ function LoginForm() {
                     throw new Error('Authentication failed');
                 }
             })
-            .then(data => {setAuthMessage(data.authMessage); setAuthenticated(data.authenticated); sessionStorage.setItem('authenticated', data.authenticated)})
-            .catch(error => setAuthMessage(error));
-    }console.log(authMessage)
+            .then(data => {setAuthenticationMessage(data.authMessage); setAuthenticated(data.authenticated); sessionStorage.setItem('authenticated', data.authenticated)})
+            .catch(error => setAuthenticationMessage(error));
+    }console.log(authenticationMessage)
     };
 
     function gotoSignupForm() {
@@ -57,7 +57,7 @@ function LoginForm() {
     return (
         <div>
             <h1>Login</h1>
-            <p style={{ color: "red" }}>{authMessage}</p>
+            <p style={{ color: "red" }}>{authenticationMessage}</p>
 
             <label>Username: </label>
             <input
